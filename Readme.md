@@ -1,4 +1,4 @@
-#  BidBite - SPA con Vite
+# Domus-Desvare-Food - SPA con Vite
 
 Este es el inicio del proyecto **BidBite**, un marketplace de subastas de comida hecho como **SPA (Single Page Application)** con **HTML, CSS y JavaScript puro** usando **Vite**.  
 
