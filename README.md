@@ -1,5 +1,5 @@
 
-# Domus-Desvare-Food - Full project (updated)
+# Domus-DesvareFood - Full project (updated)
 
 Este paquete contiene backend con funciones de compra y notificaciones, y frontend con botones Buy Now y aceptar pujas.
 
