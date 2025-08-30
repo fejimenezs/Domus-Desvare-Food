@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBite</title>
+  <link rel="stylesheet" href="/css/global.css" />
+</head>
+<body>
+  <header class="bb-header">
+    <div class="brand">
+      <span class="logo">🍴</span>
+      <span class="title">BidBite</span>
+    </div>
+    <nav class="bb-nav">
+      <a href="#/home" data-link>Inicio</a>
+      <a href="#/offers" data-link class="auth-only">Ofertas</a>
+      <a href="#/create-offer" data-link class="auth-only seller-only">Publicar</a>
+      <a href="#/login" data-link id="login-link" class="guest-only">Login</a>
+      <a href="#/register" data-link id="register-link" class="guest-only">Registro</a>
+      <button id="logout-btn" class="auth-only btn btn-secondary">Salir</button>
+    </nav>
+  </header>
+
+  <main id="app" class="bb-container"></main>
+
+  <footer class="bb-footer">
+    <p>© <span id="year"></span> BidBite — Marketplace de subastas de comida</p>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
