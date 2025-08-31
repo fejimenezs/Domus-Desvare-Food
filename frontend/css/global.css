@@ -5,14 +5,14 @@
   --green: #2e7d32;
   --green-light: #43a047;
   --orange: #d8a72b;
-  --orange-light: #fbbf24; /* Ajustado para coherencia con botones */
+  --orange-light: #fbbf24;
   --yellow: #fb8c00;
   --text: #2f2f2f;
   --muted: #6b7280;
   --card: #fff;
   --shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
   --radius: 12px;
-  --max-width: 1100px;
+  --max-width: 1200px;
 }
 
 *,
@@ -44,6 +44,7 @@ body {
   color: #fff;
   box-shadow: var(--shadow);
   z-index: 1000;
+  flex-wrap: wrap;
 }
 
 .brand {
@@ -54,7 +55,7 @@ body {
 }
 
 .logo-img {
-  width: 80px;
+  width: 60px;
   height: auto;
   border-radius: 8px;
 }
@@ -63,26 +64,10 @@ body {
   display: none;
   background: transparent;
   border: none;
-  font-size: 22px;
+  font-size: 28px;
   color: #fff;
   cursor: pointer;
 }
-
-textarea {
-  resize: none;
-  min-width: 100%;
-  min-height: 40px;
-  font-family: inherit;  /* usa la misma fuente que los inputs */
-  font-size: inherit;    /* mismo tamaño */
-}
-
-/* Asegura que el placeholder se vea igual */
-textarea::placeholder {
-  font-family: inherit;
-  font-size: inherit;
-  
-}
-
 
 /* =======================
   Layout Containers
@@ -94,15 +79,6 @@ textarea::placeholder {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-#loginForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 250px;
-  padding: 16px;
 }
 
 /* =======================
@@ -133,7 +109,7 @@ textarea::placeholder {
 ======================= */
 #offersList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   padding: 20px 0;
   width: 100%;
@@ -151,139 +127,15 @@ textarea::placeholder {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card:hover, .card-login:hover, .card-register:hover, .card-offer:hover {
+.card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-.card-content {
-  padding: 16px;
-  text-align: left;
-}
-
-.card-content h3 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.card-content p {
-  font-size: 14px;
-  color: #555;
-  margin: 4px 0;
-}
-
-.card-price {
-  font-size: 18px;
-  font-weight: bold;
-  color: var(--orange-light);
-  margin-top: 10px;
-}
-
-.card-actions {
-  display: flex;
-  gap: 8px;
-  width: 100%;
-}
-
-.card-actions button {
-  flex: 1;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  transition: 0.3s;
-}
-
-.btn-ofertar {
-  background: #fbbf24;
-  color: #fff;
-}
-
-.btn-comprar {
-  background: #22c55e;
-  color: #fff;
-}
-
-.btn-ofertar:hover { background: #f59e0b; }
-.btn-comprar:hover { background: #16a34a; }
-
-/* =======================
-  Forms & Inputs
-======================= */
-.input {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
-}
-
-/* =======================
-  Rows
-======================= */
-.row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  width: 100%;
-}
-
-/* =======================
-  Footer
-======================= */
-.bb-footer {
-  width: 100%;
-  border-top: 1px solid #f0f0f0;
-  padding: 18px 20px;
-  color: var(--muted);
-  text-align: center;
-  background: #fff;
-  margin-top: 40px;
-}
-
-/* =======================
-  Hero Section
-======================= */
-.home-hero {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  border-radius: var(--radius);
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.8));
-  margin-bottom: 20px;
-  width: 100%;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.home-hero img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: var(--radius);
-}
-
-/* =======================
-  Empty State
-======================= */
-.empty {
-  padding: 18px;
-  border: 1px dashed #e5e7eb;
-  border-radius: var(--radius);
-  color: var(--muted);
-  text-align: center;
 }
 
 /* =======================
   Buttons
 ======================= */
-.btn {
-  border: none;
+button, .btn, .btn-primary, .btn-secondary, .btn-cta {
   border-radius: 8px;
   cursor: pointer;
   font-weight: 600;
@@ -306,80 +158,39 @@ textarea::placeholder {
   color: #000;
   border: 1px solid #e5e7eb;
   padding: 8px 12px;
-  border-radius: 8px;
-  width: fit-content;
 }
 
-button {
-  background: linear-gradient(90deg, #f59e0b, #f97316);
-  color: #fff;
-  padding: 14px;
+button:hover, .btn-primary:hover, .btn-cta:hover, .btn-secondary:hover {
+  transform: scale(1.05);
+}
+
+/* =======================
+  Forms
+======================= */
+.input, textarea {
   width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background: linear-gradient(90deg, #f07658, #fa3232);
-  transform: scale(1.05);
-  color: #fff;
+  font-size: 15px;
+  font-family: inherit;
 }
 
 /* =======================
-  Mission & Vision
+  Responsive Media Queries
 ======================= */
-.mission-vision {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin: 40px auto;
-  max-width: var(--max-width);
+@media (max-width: 1024px) {
+  .bb-container {
+    padding: 20px;
+  }
+
+  .card {
+    padding: 12px;
+  }
 }
 
-.mv-card {
-  flex: 1 1 280px;
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 24px;
-  border: 1px solid #f5f5f5;
-  text-align: center;
-}
-
-.mv-card h2 {
-  color: var(--orange);
-  margin-bottom: 12px;
-}
-
-.mv-card p {
-  color: var(--text);
-  text-align: justify;
-}
-
-.mv-action {
-  margin-top: 25px;
-  text-align: center;
-}
-
-.mv-action .btn {
-  font-size: 18px;
-  font-weight: 700;
-  padding: 14px 28px;
-  border-radius: 50px;
-  display: inline-block;
-}
-
-.mv-action .btn:hover {
-  transform: scale(1.05);
-}
-
-/* =======================
-  Responsive Styles
-======================= */
-@media (max-width: 800px) {
+@media (max-width: 768px) {
   .bb-nav {
     display: none;
     flex-direction: column;
@@ -396,25 +207,48 @@ button:hover {
     display: block;
   }
 
-  .row {
+  #offersList {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
-  .home-hero {
-    flex-direction: column;
-    text-align: center;
+  .card-content h3 {
+    font-size: 16px;
   }
 
-  /* =======================
-Card Descriptions
-======================= */
-.card p {
-  font-size: 14px;
-  color: #555;
-  margin: 6px 0;
-  line-height: 1.4;
-  text-align: left;
-  width: 100%;
+  .card-content p {
+    font-size: 14px;
+  }
 }
 
+@media (max-width: 480px) {
+  .bb-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .logo-img {
+    width: 50px;
+  }
+
+  #offersList {
+    gap: 12px;
+  }
+
+  .card-content h3 {
+    font-size: 15px;
+  }
+
+  .card-content p {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 10px;
+  }
 }
