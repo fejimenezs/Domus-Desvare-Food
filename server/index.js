@@ -14,7 +14,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
-const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`; // URL pública de Render
+const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
 
 app.use(cors());
 app.use(express.json());
@@ -36,9 +36,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Error interno del servidor' });
 });
 
-/**
- * ensureAdmin: crea o actualiza un usuario administrador con role='adm'
- */
+// Crear o actualizar admin
 async function ensureAdmin() {
   try {
     const email = process.env.ADMIN_EMAIL;
@@ -47,10 +45,7 @@ async function ensureAdmin() {
     const phone = process.env.ADMIN_PHONE || null;
     const saltRounds = parseInt(process.env.BCRYPT_SALT_ROUNDS || '10', 10);
 
-    if (!email || !plain) {
-      console.log('ensureAdmin: ADMIN_EMAIL o ADMIN_PASSWORD no definidos en .env — omitiendo creación de admin.');
-      return;
-    }
+    if (!email || !plain) return;
 
     const hashed = await bcrypt.hash(plain, saltRounds);
 
@@ -60,13 +55,13 @@ async function ensureAdmin() {
         'INSERT INTO users (email, password, name, phone, role) VALUES ($1,$2,$3,$4,$5)',
         [email, hashed, name, phone, 'adm']
       );
-      console.log(`ensureAdmin: usuario admin creado (${email})`);
+      console.log(`Admin creado: ${email}`);
     } else {
       await query(
         'UPDATE users SET password=$1, role=$2, name=COALESCE($3,name), phone=COALESCE($4,phone) WHERE email=$5',
         [hashed, 'adm', name, phone, email]
       );
-      console.log(`ensureAdmin: usuario admin actualizado (${email})`);
+      console.log(`Admin actualizado: ${email}`);
     }
   } catch (err) {
     console.error('ensureAdmin error:', err.message || err);
