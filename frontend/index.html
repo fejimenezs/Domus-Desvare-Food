@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CaseritosApp</title>
+  <link rel="stylesheet" href="/css/global.css" />
+  <script src="https://kit.fontawesome.com/f769715ece.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="bb-header">
+    <div class="brand">
+      <img src="./assets/caseritosapp1.png" alt="Logo" class="logo-img" />
+      <span class="title">CaseritosApp</span>
+    </div>
+    <button id="burger" class="burger" aria-label="Menu">☰</button>
+    <nav class="bb-nav" id="mainNav">
+      <a href="#/home" data-link><i class="fa-solid fa-house"></i>Home</a>
+      <a href="#/admin" data-link class="auth-only admin-only">Admin</a>
+
+      <a href="#/offers" data-link class="auth-only">Offers</a>
+      <a href="#/create-offer" data-link class="auth-only">Publish offers</a>
+      <a href="#/history" data-link class="auth-only">My history</a>
+      <a href="#/notifications" data-link class="auth-only">Notifications</a>
+      <a href="#/login" data-link id="login-link" class="guest-only">Login</a>
+      <a href="#/register" data-link id="register-link" class="guest-only">Register</a>
+      <button id="logout-btn" class="auth-only btn btn-secondary"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button>
+    </nav>
+  </header>
+
+  <main id="app" class="bb-container"></main>
+
+  <footer class="bb-footer">
+    <p>© <span id="year"></span> CaseritosApp — Homemade Food Marketplace</p>
+  </footer>
+
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
