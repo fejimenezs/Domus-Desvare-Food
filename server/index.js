@@ -14,18 +14,23 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`; // URL pública de Render
 
 app.use(cors());
 app.use(express.json());
 
+// Rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/offers', offersRoutes);
 app.use('/api/notifications', notificationsRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/admin', adminRoutes);
 
-app.get('/', (req, res) => { res.json({ message: 'CaseritosApp API running' }); });
+app.get('/', (req, res) => { 
+  res.json({ message: 'CaseritosApp API running' }); 
+});
 
+// Manejo de errores global
 app.use((err, req, res, next) => {
   console.error('Unhandled error:', err);
   res.status(500).json({ error: 'Error interno del servidor' });
@@ -33,8 +38,6 @@ app.use((err, req, res, next) => {
 
 /**
  * ensureAdmin: crea o actualiza un usuario administrador con role='adm'
- * Lee variables desde .env:
- *  ADMIN_EMAIL, ADMIN_PASSWORD, ADMIN_NAME, ADMIN_PHONE, BCRYPT_SALT_ROUNDS
  */
 async function ensureAdmin() {
   try {
@@ -49,10 +52,8 @@ async function ensureAdmin() {
       return;
     }
 
-    // Hashear la contraseña
     const hashed = await bcrypt.hash(plain, saltRounds);
 
-    // Verificar si existe el usuario por email
     const r = await query('SELECT id FROM users WHERE email=$1', [email]);
     if (r.rowCount === 0) {
       await query(
@@ -69,16 +70,15 @@ async function ensureAdmin() {
     }
   } catch (err) {
     console.error('ensureAdmin error:', err.message || err);
-    // no hacer crash aquí — devolvemos el control
   }
 }
 
-// arrancar servidor después de asegurar admin
+// Arrancar servidor
 async function start() {
   try {
     await ensureAdmin();
     app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
+      console.log(`Server running at ${BASE_URL}`);
     });
   } catch (err) {
     console.error('Error arrancando el servidor:', err);
