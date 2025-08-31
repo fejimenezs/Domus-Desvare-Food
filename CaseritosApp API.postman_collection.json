@@ -1,0 +1,366 @@
+{
+	"info": {
+		"_postman_id": "d4edd610-e19c-429f-93f3-d91f85c95c1a",
+		"name": "CaseritosApp API",
+		"description": "CaseritosApp es una API RESTful que conecta a mujeres que venden comida casera con personas interesadas en comprarla.  \n  \nEl sistema permite **crear, listar, comprar y pujar** por ofertas, además de manejar **notificaciones** y contar con un **panel de administración**.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46191514",
+		"_collection_link": "https://nadine-4349707.postman.co/workspace/23add737-0945-47bc-85c6-ac4e7a5f6d6e/collection/46191514-d4edd610-e19c-429f-93f3-d91f85c95c1a?action=share&source=collection_link&creator=46191514"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"123456\",\n  \"name\": \"Usuario Prueba\",\n  \"phone\": \"3001234567\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registra un nuevo usuario en la plataforma.\n\nCampos requeridos: `email`, `password`.\n\nOpcionales: `name`, `phone`.\n\nPor defecto el rol es `user`."
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"test@test.com\",\n  \"password\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Autentica a un usuario existente y devuelve un **token JWT** junto con la información básica del usuario."
+					},
+					"response": []
+				}
+			],
+			"description": "Contiene los endpoints de autenticación para registrar y autenticar usuarios en CaseritosApp. Devuelven un token JW**T** que se debe usar en las rutas protegidas."
+		},
+		{
+			"name": "Offers",
+			"item": [
+				{
+					"name": "List Offers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"offers"
+							]
+						},
+						"description": "Devuelve todas las ofertas disponibles, excluyendo las ya vendidas. Es un endpoint público."
+					},
+					"response": []
+				},
+				{
+					"name": "Offer Detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/offers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"offers",
+								"1"
+							]
+						},
+						"description": "Obtiene la información completa de una oferta (incluye datos del vendedor y pujas realizadas)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Empanadas\",\n  \"description\": \"Deliciosas empanadas\",\n  \"price\": 5000,\n  \"qty\": 10,\n  \"location\": \"Barranquilla\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/offers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"offers"
+							]
+						},
+						"description": "Requiere token JWT. El usuario autenticado será el vendedor."
+					},
+					"response": []
+				}
+			],
+			"description": "Maneja las ofertas de comida: listado, creación, detalle, edición y eliminación."
+		},
+		{
+			"name": "Bids & Buy",
+			"item": [
+				{
+					"name": "Make Bid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"price\": 3500\n}"
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/offers/1/bids",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"offers",
+								"1",
+								"bids"
+							]
+						},
+						"description": "Crea una puja sobre una oferta existente."
+					},
+					"response": []
+				},
+				{
+					"name": "Buy Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/offers/1/buy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"offers",
+								"1",
+								"buy"
+							]
+						},
+						"description": "Compra inmediata de una oferta."
+					},
+					"response": []
+				}
+			],
+			"description": "Permite a los compradores hacer contraofertas (pujas) y realizar compras directas de una oferta."
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "List Notifications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/notifications",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"notifications"
+							]
+						},
+						"description": "Devuelve las notificaciones del usuario autenticado, en orden descendente por fecha"
+					},
+					"response": []
+				}
+			],
+			"description": "Gestiona las notificaciones generadas por compras y pujas."
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "My History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/users/me/history",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"me",
+								"history"
+							]
+						},
+						"description": "Devuelve el historial de pujas realizadas y compras efectuadas."
+					},
+					"response": []
+				}
+			],
+			"description": "Muestra información del usuario autenticado y su historial de actividad."
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/admin/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"users"
+							]
+						},
+						"description": "Devuelve la lista completa de usuarios registrados"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:4000/api/admin/users/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"admin",
+								"users",
+								"2"
+							]
+						},
+						"description": "Elimina un usuario específico."
+					},
+					"response": []
+				}
+			],
+			"description": "Permiten gestionar usuarios"
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
