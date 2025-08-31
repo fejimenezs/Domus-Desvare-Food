@@ -15,6 +15,7 @@
   --max-width: 1100px;
 }
 
+/* Reset */
 *,
 *::before,
 *::after {
@@ -89,6 +90,21 @@ body {
   align-items: center;
   gap: 12px;
   flex-wrap: wrap;
+  transition: max-height 0.3s ease;
+}
+
+.bb-nav.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: linear-gradient(90deg, var(--orange), var(--yellow));
+  padding: 12px;
+  border-radius: 8px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 250px;
 }
 
 .bb-nav a {
@@ -173,16 +189,8 @@ body {
   transition: 0.3s;
 }
 
-.btn-ofertar {
-  background: #fbbf24;
-  color: #fff;
-}
-
-.btn-comprar {
-  background: #22c55e;
-  color: #fff;
-}
-
+.btn-ofertar { background: #fbbf24; color: #fff; }
+.btn-comprar { background: #22c55e; color: #fff; }
 .btn-ofertar:hover { background: #f59e0b; }
 .btn-comprar:hover { background: #16a34a; }
 
@@ -201,16 +209,6 @@ body {
 textarea {
   resize: none;
   min-height: 60px;
-}
-
-/* =======================
-  Rows
-======================= */
-.row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  width: 100%;
 }
 
 /* =======================
@@ -243,69 +241,11 @@ textarea {
 }
 
 .home-hero img {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
   object-fit: cover;
   border-radius: var(--radius);
-}
-
-/* =======================
-  Empty State
-======================= */
-.empty {
-  padding: 18px;
-  border: 1px dashed #e5e7eb;
-  border-radius: var(--radius);
-  color: var(--muted);
-  text-align: center;
-}
-
-/* =======================
-  Buttons
-======================= */
-.btn {
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  text-align: center;
-  transition: 0.2s ease;
-}
-
-.btn-primary {
-  background: linear-gradient(90deg, var(--green), var(--green-light));
-  color: #fff;
-}
-
-.btn-cta {
-  background: linear-gradient(90deg, var(--orange), var(--orange-light));
-  color: #fff;
-}
-
-.btn-secondary {
-  background: #fff;
-  color: #000;
-  border: 1px solid #e5e7eb;
-  padding: 8px 12px;
-  border-radius: 8px;
-  width: fit-content;
-}
-
-button {
-  background: linear-gradient(90deg, #f59e0b, #f97316);
-  color: #fff;
-  padding: 14px;
-  width: 100%;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  background: linear-gradient(90deg, #f07658, #fa3232);
-  transform: scale(1.05);
-  color: #fff;
 }
 
 /* =======================
@@ -358,88 +298,73 @@ button:hover {
 }
 
 /* =======================
-  Responsive Styles Mejorados
+  Buttons
+======================= */
+.btn {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  text-align: center;
+  transition: 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  color: #fff;
+}
+
+.btn-cta {
+  background: linear-gradient(90deg, var(--orange), var(--orange-light));
+  color: #fff;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #000;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+button {
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  color: #fff;
+  padding: 14px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #f07658, #fa3232);
+  transform: scale(1.05);
+  color: #fff;
+}
+
+/* =======================
+  Responsive Styles
 ======================= */
 @media (max-width: 1024px) {
-  .row {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .mission-vision {
-    flex-direction: column;
-    gap: 20px;
-  }
+  .row { grid-template-columns: 1fr; gap: 16px; }
+  .mission-vision { flex-direction: column; }
 }
 
 @media (max-width: 768px) {
-  .bb-nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 60px;
-    right: 10px;
-    padding: 12px;
-    background: linear-gradient(90deg, var(--orange), var(--yellow));
-    border-radius: 8px;
-    z-index: 1000;
-  }
-  .burger {
-    display: block;
-  }
-
-  .home-hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 10px;
-  }
-
-  .home-hero img {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    margin-bottom: 10px;
-  }
-
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
+  .bb-nav { display: none; }
+  .burger { display: block; }
+  .home-hero { flex-direction: column; text-align: center; }
+  .cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
 }
 
 @media (max-width: 480px) {
-  body {
-    font-size: 14px;
-  }
-  .bb-header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-  }
-  .brand {
-    gap: 6px;
-  }
-  .logo-img {
-    width: 60px;
-  }
-  .btn, button {
-    font-size: 13px;
-    padding: 10px;
-  }
-  .home-hero img {
-    width: 90%;
-    max-width: 280px;
-    height: auto;
-  }
-
-  .mv-card img {
-    width: 100%;
-    height: auto;
-    max-width: 350px;
-    margin: 0 auto 12px;
-  }
-
-  .mv-card {
-    padding: 16px;
-  }
+  body { font-size: 14px; }
+  .bb-header { flex-direction: column; align-items: flex-start; padding: 10px; }
+  .brand { gap: 6px; }
+  .logo-img { width: 60px; }
+  .btn, button { font-size: 13px; padding: 10px; }
+  .home-hero img { max-width: 90%; height: auto; }
 }
