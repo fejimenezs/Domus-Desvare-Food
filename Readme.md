@@ -1,25 +1,20 @@
-# Domus-Desvare-Food - SPA con Vite
 
-Este es el inicio del proyecto **BidBite**, un marketplace de subastas de comida hecho como **SPA (Single Page Application)** con **HTML, CSS y JavaScript puro** usando **Vite**.  
+# Domus-DesvareFood - Full project (updated)
 
-**Estado:** El proyecto está en proceso, pendiente de revisión y mejoras.
+Este paquete contiene backend con funciones de compra y notificaciones, y frontend con botones Buy Now y aceptar pujas.
 
----
-
-##  Cómo ejecutar el proyecto
-
-1. Abre una terminal dentro de la carpeta `frontend/`.
-2. Ejecuta los siguientes comandos:
-
-```bash
-npm init -y
-npm install vite
-npx vite dev
-
-
-Sistema de usuarios (Registro y Login)
-
-El proyecto usa localStorage como una base de datos simulada.
-mientras crean la base de datos:
-
-Este proyecto aún está en construccion Se espera retroalimentación para continuar con los siguientes pasos.
+## Pasos rápidos (Windows)
+1. Crear DB y tablas base:
+   psql -U postgres -d bidbite -f server/sql/create_db.sql
+2. Aplicar migración para notificaciones y campos adicionales:
+   psql -U postgres -d bidbite -f server/sql/migration_update.sql
+3. Backend:
+   cd server
+   copy .env.example .env
+   # editar server/.env y poner DATABASE_URL
+   npm install
+   npm run dev
+4. Frontend:
+   cd frontend
+   npx serve .
+   # o integra en tu Vite app
