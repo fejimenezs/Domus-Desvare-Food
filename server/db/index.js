@@ -5,9 +5,9 @@ dotenv.config();
 const { Pool } = pg;
 
 export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL || 'postgresql://caseritosapp_db_user:SqSIlNWCymSTTTP3V2vqvCEXDlSOOoze@dpg-d2pu2kfdiees73cchnm0-a.ohio-postgres.render.com/caseritosapp_db',
   ssl: {
-    rejectUnauthorized: false, // necesario para Render
+    rejectUnauthorized: false, // obligatorio para Render
   },
 });
 
