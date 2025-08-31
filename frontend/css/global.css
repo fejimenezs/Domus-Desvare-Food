@@ -204,6 +204,16 @@ textarea {
 }
 
 /* =======================
+  Rows
+======================= */
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+/* =======================
   Footer
 ======================= */
 .bb-footer {
@@ -240,24 +250,13 @@ textarea {
 }
 
 /* =======================
-  Mission & Vision
+  Empty State
 ======================= */
-.mission-vision {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin: 40px auto;
-  max-width: var(--max-width);
-}
-
-.mv-card {
-  flex: 1 1 280px;
-  background: var(--card);
+.empty {
+  padding: 18px;
+  border: 1px dashed #e5e7eb;
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 24px;
-  border: 1px solid #f5f5f5;
+  color: var(--muted);
   text-align: center;
 }
 
@@ -292,8 +291,74 @@ textarea {
   width: fit-content;
 }
 
+button {
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  color: #fff;
+  padding: 14px;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #f07658, #fa3232);
+  transform: scale(1.05);
+  color: #fff;
+}
+
 /* =======================
-  Responsive Styles
+  Mission & Vision
+======================= */
+.mission-vision {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px auto;
+  max-width: var(--max-width);
+}
+
+.mv-card {
+  flex: 1 1 280px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  border: 1px solid #f5f5f5;
+  text-align: center;
+}
+
+.mv-card h2 {
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.mv-card p {
+  color: var(--text);
+  text-align: justify;
+}
+
+.mv-action {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.mv-action .btn {
+  font-size: 18px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.mv-action .btn:hover {
+  transform: scale(1.05);
+}
+
+/* =======================
+  Responsive Styles Mejorados
 ======================= */
 @media (max-width: 1024px) {
   .row {
@@ -302,6 +367,7 @@ textarea {
   }
   .mission-vision {
     flex-direction: column;
+    gap: 20px;
   }
 }
 
@@ -320,10 +386,20 @@ textarea {
   .burger {
     display: block;
   }
+
   .home-hero {
     flex-direction: column;
     text-align: center;
+    padding: 10px;
   }
+
+  .home-hero img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+
   .cards {
     display: grid;
     grid-template-columns: 1fr;
@@ -351,7 +427,19 @@ textarea {
     padding: 10px;
   }
   .home-hero img {
-    width: 100px;
-    height: 100px;
+    width: 90%;
+    max-width: 280px;
+    height: auto;
+  }
+
+  .mv-card img {
+    width: 100%;
+    height: auto;
+    max-width: 350px;
+    margin: 0 auto 12px;
+  }
+
+  .mv-card {
+    padding: 16px;
   }
 }
