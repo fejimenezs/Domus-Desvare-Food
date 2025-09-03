@@ -1,15 +1,15 @@
-# 🍲 Domus Desvare Food
+# 🍲 CASERITOS APP
 
 ## 📖 Description
-Domus Desvare Food is a full-stack web application that connects people who sell homemade food with those who want to buy it.  
+CASERITOS APP is a full-stack web application that connects people who sell homemade food with those who want to buy it.  
 The platform provides a **RESTful API** built with Node.js + Express and a **frontend SPA** (Single Page Application) using vanilla JavaScript, HTML, and CSS.  
 
 Users can:  
 - Register and log in (with authentication & roles: admin or user).  
-- Publish, edit, and delete food offers.  
+- Publish food offers.  
 - Browse, bid, or directly buy offers.  
 - Receive notifications about bids, purchases, and activity.  
-- Admins can manage users and offers through an admin panel.  
+- Admins can manage users through an admin panel.  
 
 ---
 
